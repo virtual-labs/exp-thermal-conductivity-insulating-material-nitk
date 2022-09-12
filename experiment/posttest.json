@@ -2,38 +2,107 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "The radial heat transfer rate through hollow cylinder increases as the ratio of outer radius to inner radius",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Constant",
+        "b": "Increases",
+        "c": "Decreases",
+        "d": "None of these"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "When the thickness of insulation on a pipe exceeds the critical value the heat flow rate",
+      "answers": {
+        "a": "Increases",
+        "b": "None of these",
+        "c": "Remains constant",
+        "d": "Decreases"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
       },
       "correctAnswer": "a",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "The amount of heat flow through a body by conduction is",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Directly proportional to the temperature",
+        "b": "All of these",
+        "c": "Inversely proportional to the thickness of the body",
+        "d": "Dependent upon the material of the body"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "b",
+      "difficulty": "advanced"
+    },
+    {
+      "question": "Which of the following is true?",
+      "answers": {
+        "a": "Latent heat of fusion is not much affected by pressure ",
+        "b": "Latent heat of vapourization is highly sensitive to pressure",
+        "c": "Both of the mentioned",
+        "d": "None of the mentioned"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
       },
       "correctAnswer": "c",
       "difficulty": "beginner"
+    },
+    {
+     "question": "The literature of heat transfer generally recognizes distinct modes of heat transfer. How many modes are there?",
+      "answers": {
+        "a": "One",
+        "b": "Two",
+        "c": "Three",
+        "d": "Four"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "c",
+      "difficulty": "advanced"
+    },
+    {
+      "question": "Heat transfer by conduction is described by",
+      "answers": {
+        "a": "Fourier’s law",
+        "b": "Newton’s law of cooling",
+        "c": "Stefan-Boltzmann law",
+        "d": "Fick’s law"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "a",
+      "difficulty": "intermediate"
     }
+
   ]
 }

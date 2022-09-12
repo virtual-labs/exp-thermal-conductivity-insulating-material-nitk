@@ -2,38 +2,85 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "Heat transfer takes place according to",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "First Law of Thermodynamics",
+        "b": "Second Law of Thermodynamics",
+        "c": "Third Law of Thermodynamics",
+        "d": "Zeroth Law of Thermodynamics"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
       },
-      "correctAnswer": "a",
-      "difficulty": "beginner"
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "Fourier law of heat conduction is based on the assumption that",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Heat flow through a solid is one dimensional",
+        "b": "Heat flow is in steady state",
+        "c": "Both (a) and (b)",
+        "d": "None of the options"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
       },
       "correctAnswer": "c",
       "difficulty": "beginner"
+    },
+    {
+      "question": "The transfer of heat between two bodies in direct contact is called?",
+      "answers": {
+        "a": "Radiation",
+        "b": "Convection",
+        "c": "Conduction",
+        "d": "None of the above"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "c",
+      "difficulty": "advanced"
+    },
+    {
+      "question": "Heat flow into a system taken to be __________ and heat flow out of the system is taken as __________",
+      "answers": {
+        "a": "Positive, Positive",
+        "b": "Negative, Negative",
+        "c": "Negative, Positive",
+        "d": "Positive, Negative"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "d",
+      "difficulty": "beginner"
+    },
+    {
+     "question": "The specific of the substances is defined as the amount of heat required to raise a unit mass of the substances through a unit raise in temperature",
+      "answers": {
+        "a": "True",
+        "b": "False"
+      },
+      "explanations": {
+        "a": "",
+        "b": ""
+      },
+      "correctAnswer": "a",
+      "difficulty": "advanced"
     }
   ]
 }
