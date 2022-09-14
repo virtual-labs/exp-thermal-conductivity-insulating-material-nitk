@@ -60,6 +60,7 @@ var temp=0;
 var temp1 = 2;
 var temp2 = 0;
 
+var background, layer;
 /*
 // for trials during development
 function trythis()
@@ -114,6 +115,10 @@ function rotstate(){
     t1 = [26, 28.1, 26.5, 27, 27.2];
     th = [45,45,45,45,45];
     v=0;
+    background = new Image();
+  background.src = "./images/model2.jpg";
+  layer = new Image();
+  layer.src = "./images/screen.png";
     varinit();
     startsim();
     drawModel();
@@ -193,7 +198,7 @@ function switchscreen(){
       document.getElementById('simscreen').style.visibility = "hidden";
       document.getElementById('textbox').style.visibility = "hidden";
       document.getElementById('textbox1').style.visibility = "hidden";
-      printcomment("<i>diameter</i> d1 = 45mm d2 = 75mm<br><i> Length of pipe</i> = 500mm<br><i>K</i>  = 0.069 W/m.K", 0);
+      printcomment("<i>Diameter, </i> d1 = 45mm, d2 = 75mm<br><i> Length of pipe</i> = 500mm<br><i>K</i>  = 0.069 W/m.K", 0);
       calc();
     }
     if(imgfilename=="bluebkdulls"){
@@ -204,7 +209,7 @@ function switchscreen(){
       document.getElementById('textbox').style.visibility = "visible";
       document.getElementById('textbox1').style.visibility = "visible";
       temp2 =1;
-      printcomment("<i>diameter</i> d1 = 45mm d2 = 75mm<br><i> Length of pipe</i> = 500mm<br><i>K</i>  = 0.069 W/m.K", 1);
+      printcomment("<i>Diameter, </i> d1 = 45mm, d2 = 75mm<br><i> Length of pipe</i> = 500mm<br><i>K</i>  = 0.069 W/m.K", 1);
       $("#symbol1").attr("style", "visibility:hidden");
       $("#symbol2").attr("style", "visibility:hidden");
       $("#symbol3").attr("style", "visibility:hidden");
@@ -338,10 +343,16 @@ ctx.fill();
    ctx.fillRect(425,    335, 1.5, -th[2]);
    ctx.fillRect(473.25, 335, 1.5, -th[3]);
    ctx.fillRect(521.25, 335, 1.5, -th[4]);
-   ctx.arc(168, 281, 50, 0, 2 * Math.PI);   
+   ctx.arc(168, 281, 50, 0, 2 * Math.PI); 
+    
+   ctx.rect(118, 281, 100, 105);
    ctx.stroke();
+
    ctx.beginPath();
    ctx.arc(168, 281, 20, 0, 2 * Math.PI);
+
+   ctx.rect(148, 205, 40, 76);
+
    ctx.stroke();
 }
 
@@ -352,12 +363,15 @@ function drawModel()
   ctx = canvas.getContext("2d");
   ctx.clearRect(0,0,550,400);  //clears the complete canvas#simscreen everytime
   
-  var background = new Image();
-  background.src = "./images//model2.jpg";
+   background = new Image();
+  background.src = "./images/model2.jpg";
+  layer = new Image();
+  layer.src = "./images/screen.png";
 
   // Make sure the image is loaded first otherwise nothing will draw.
-  background.onload = function(){
+  layer.onload = function(){
     ctx.drawImage(background, 0, 0, 550, 400); 
+
     //ctx.clearRect(78, 210, 46, 64);
     ctx.font = "15px Comic San MS";
   ctx.fillText("Insulating Material", 420, 125);
@@ -377,11 +391,12 @@ function drawModel()
    ctx.rect(368, 230, 11, 112);
    ctx.fillRect(372, 332, 4, 7);
    ctx.rect(100, 88, 230, 5);
+   ctx.drawImage(layer, 0, 0, 550, 400); 
    ctx.stroke();
 
- 
+
     drawGradient();
-    printcomment("<i>diameter</i> d1 = 45mm d2 = 75mm<br><i> Length of pipe</i> = 500mm<br><i>K</i>  = 0.069 W/m.K", 1)
+    printcomment("<i>Diameter, </i> d1 = 45mm, d2 = 75mm<br><i> Length of pipe</i> = 500mm<br><i>K</i>  = 0.069 W/m.K", 1)
   }
 }
   
@@ -541,14 +556,14 @@ send an email to adityaraman09@gmail.com for any communication
   <p style='font-family: "Comic Sans MS", cursive, sans-serif; font-size: 13px;';>&nbsp; &nbsp; T1 &nbsp; &nbsp; &nbsp; &nbsp; T2&nbsp; &nbsp; &nbsp; &nbsp; T3&nbsp; &nbsp; &nbsp; &nbsp; T4&nbsp; &nbsp; &nbsp; &nbsp; T5
   </p>
 </div>
-<div id="textbox1" style="position: absolute; left:75px; top: 425px; width:250px; height:50px;" >
-  <p style='font-family: "Comic Sans MS", cursive, sans-serif; font-size: 13px; text-align: center;'>Cross Sectional View<br> A-A</p>
+<div id="textbox1" style="position: absolute; left:146px; top: 420px; width:150px; height:50px;" >
+  <p style='font-family: "Comic Sans MS", cursive, sans-serif; font-size: 13px; text-align: center;word-wrap: break-word;width:100px;'>Cross Sectional View<br> A-A</p>
 </div>  
 
 <!-- Region for calculation visible after onclick switchbutton-->
 <div id="calculation" style="visibility: hidden">
-  <p><i>Ti</i> = T1+T2+T3/3<br>
-  <i>To</i> = T4+T5/2</p>
+  <p><i>Ti</i> = (T1+T2+T3)/3<br>
+  <i>To</i> = (T4+T5)/2</p>
   <p><b>Heat through Lagged pipe, </b></p>
   <div class="tooltip"><label for="qvalue"><i> Q = </i></label><input type="number" id="qvalue" style="width: 125px;"> W
     <span class="tooltiptext"><p> Q = <span style="font-size: large;" class="frac"><sup>2.&Pi;.L.(Ti-To)</sup><span>&frasl;</span><sub>ln(r2/r1)/K1</sub></span></p><p>upto two decimal places</p></span>
