@@ -10,10 +10,10 @@
         "d": "None of these"
       },
       "explanations": {
-        "a": "",
-        "b": "",
-        "c": "",
-        "d": ""
+        "a": "The right answer is (c). The radial heat transfer rate through hollow cylinder becomes constant if the ratio of outer radius to inner radius is constant.",
+        "b": "The right answer is (c). The radial heat transfer rate through hollow cylinder decreases if the ratio of outer radius to inner radius increases. The heat transfer rate Q is inversely proportional to the natural logarithm of the ratio of the outer radius r2 to the inner radius r1 (i.e., ln(r2/r1)). This means that as the ratio r2/r1 increases, the value of ln(r2/r1) also increases. Since ln(r2/r1) is in the denominator of the equation, a increase in its value results in an decrease in the heat transfer rate Q.",
+        "c": "Correct, The right answer is (c). The heat transfer rate Q is inversely proportional to the natural logarithm of the ratio of the outer radius r2 to the inner radius r1 (i.e., ln(r2/r1)). This means that as the ratio r2/r1 decreases, the value of ln(r2/r1) also decreases. Since ln(r2/r1) is in the denominator of the equation, a decrease in its value results in an increase in the heat transfer rate Q.",
+        "d": "The right answer is (c). The radial heat transfer rate through hollow cylinder increases as the ratio of outer radius to inner radius decreases. The heat transfer rate Q is inversely proportional to the natural logarithm of the ratio of the outer radius r2 to the inner radius r1 (i.e., ln(r2/r1)). This means that as the ratio r2/r1 decreases, the value of ln(r2/r1) also decreases. Since ln(r2/r1) is in the denominator of the equation, a decrease in its value results in an increase in the heat transfer rate Q."
       },
       "correctAnswer": "c",
       "difficulty": "intermediate"
@@ -27,10 +27,10 @@
         "d": "Decreases"
       },
       "explanations": {
-        "a": "",
-        "b": "",
-        "c": "",
-        "d": ""
+        "a": "Correct, the right answer is (a). This is because as the insulation becomes thicker, the outer surface area of the insulation also increases. This larger surface area can radiate or convect more heat to the surroundings, which can increase the overall heat loss from the pipe.",
+        "b": "The right answer is (a). When the thickness of insulation on a pipe exceeds the critical value the heat flow rate increases. This is because as the insulation becomes thicker, the outer surface area of the insulation also increases. This larger surface area can radiate or convect more heat to the surroundings, which can increase the overall heat loss from the pipe.",
+        "c": "The right answer is (a). IF the thickness of insulation on a pipe exceeds or not exceeds the critical value, the heat flow rate should get increased or decreased but not remaining constant.",
+        "d": "The right answer is (a). In general, increasing the thickness of the insulation increases its thermal resistance, which reduces the rate of heat transfer. However, when the thickness of the insulation exceeds a certain critical value, the heat flow rate can actually increase. This is because as the insulation becomes thicker, the outer surface area of the insulation also increases. This larger surface area can radiate or convect more heat to the surroundings, which can increase the overall heat loss from the pipe."
       },
       "correctAnswer": "a",
       "difficulty": "beginner"
@@ -44,10 +44,10 @@
         "d": "Dependent upon the material of the body"
       },
       "explanations": {
-        "a": "",
-        "b": "",
-        "c": "",
-        "d": ""
+        "a": "The right answer is (b). The amount of heat flow through a body by conduction is not only directly proportional to the temperature. But also inversely proportional to the thickness of the body and dependent upon the material of the body.",
+        "b": "Correct, the right answer is (b). The amount of heat flow through a body by conduction is directly proportional to the temperature, inversely proportional to the thickness of the body and dependent upon the material of the body.",
+        "c": "The right answer is (b). The amount of heat flow through a body by conduction is not only inversely proportional to the thickness of the body. But also directly proportional to the temperature and dependent upon the material of the body.",
+        "d": "The right answer is (b). The amount of heat flow through a body by conduction does not only dependent upon the material of the body. But also directly proportional to the temperature and inversely proportional to the thickness of the body."
       },
       "correctAnswer": "b",
       "difficulty": "advanced"
@@ -61,10 +61,10 @@
         "d": "None of the mentioned"
       },
       "explanations": {
-        "a": "",
-        "b": "",
-        "c": "",
-        "d": ""
+        "a": "The right answer is (c). Latent heat of fusion is less sensitive to pressure while latent heat of vapourization is highly sensitive to pressure.",
+        "b": "The right answer is (c). Latent heat of fusion is less sensitive to pressure while latent heat of vapourization is highly sensitive to pressure.",
+        "c": "Correct, The right answer is (c). Latent heat of fusion is less sensitive to pressure while latent heat of vapourization is highly sensitive to pressure.",
+        "d": "The right answer is (c). Latent heat of fusion is less sensitive to pressure while latent heat of vapourization is highly sensitive to pressure."
       },
       "correctAnswer": "c",
       "difficulty": "beginner"
@@ -78,10 +78,10 @@
         "d": "Four"
       },
       "explanations": {
-        "a": "",
-        "b": "",
-        "c": "",
-        "d": ""
+        "a": "The right answer is (c). There are 3 types of heat transfer: 1) Conduction 2) Convection 3) Radiation.",
+        "b": "The right answer is (c). There are 3 types of heat transfer: 1) Conduction 2) Convection 3) Radiation.",
+        "c": "Correct, The right answer is (c). There are 3 types of heat transfer: 1) Conduction 2) Convection 3) Radiation.",
+        "d": "The right answer is (c). There are 3 types of heat transfer: 1) Conduction 2) Convection 3) Radiation."
       },
       "correctAnswer": "c",
       "difficulty": "advanced"
@@ -95,10 +95,10 @@
         "d": "Fick’s law"
       },
       "explanations": {
-        "a": "",
-        "b": "",
-        "c": "",
-        "d": ""
+        "a": "Correct, the right answer is (a). Fourier's law explains the heat transfer by conduction. Fourier law of heat conduction states that the rate of heat transfer through a material is proportional to the negative gradient in the temperature and to the area perpendicular to that gradient through which the heat flows.",
+        "b": "The right answer is (a). Newton's Law of Cooling states that the rate of heat loss of a body is directly proportional to the difference in the temperatures between the body and its environment. In other words, the hotter an object is, the faster it will cool down.",
+        "c": "The right answer is (a). According to the Stefan-Boltzmann Law, the total energy radiated per unit surface area of a black body per unit time (also known as the radiant exitance or emissive power) is directly proportional to the fourth power of the black body's absolute temperature.",
+        "d": "The right answer is (a). Fick's Laws of Diffusion are mathematical statements that describe how particles under random thermal motion tend to spread from a region of higher concentration to a region of lower concentration to equalize concentration on both the regions."
       },
       "correctAnswer": "a",
       "difficulty": "intermediate"

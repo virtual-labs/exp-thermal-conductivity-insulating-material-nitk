@@ -1,686 +1,245 @@
 <!DOCTYPE html>
-<html lang="en-US">
-
-<head>
-<meta charset="UTF-8">
-
-<title>SOLVE - heat transfer - Heat Transfer Through Lagged Pipe</title>
-
-<!-- DND-Required css and js files -->
-<link rel="stylesheet" href="./css/MOMstyle.css" />
-<script src='./js/jquery.min.js'></script>
-<script src='./js/jquery-ui.min.js'></script>
-<script type="text/javascript" src= "./js/MOMscript.js"></script>
-<script src="./js/graph.ob.js"></script>
-<script src="./js/graph_use.ob.js"></script>
-<script src="./js/graph_use2.ob.js"></script>
-<link href="./css/mathstyle.css" rel="stylesheet" /><!--Stylesheet to display Math functions -->
-
-<script type="text/javascript" src= "./js/MOMscript.js"></script>
-<script type="text/javascript" >
-//Script specific to simulation
-
-//controls section
-var v = 0;
-var vf = 0;
-var heat = 0;
-
-//comments section
-var commenttext="Some Text";
-var calctext = "some Text";
-var commentloc=0;
-
-//graphics section
-var canvas;
-var ctx;
-
-//timing section
-var simTimeId = setInterval("",'1000');
-var TimeInterval = setInterval("",'1000');
-var TimeInterval1 = setInterval("",'1000');
-var time=0;
-var time1 = 0;
-var time2 = 0;
-
-//point tracing section and initial(atmospheric section)
-var t1 = [26, 28.1, 26.5, 27, 27.2];
-var off = [0,0,0,0,0];
-var q = [43.36, 43.71, 43.84];
-var k = [0.0796, 0.0947, 0.1101];
-var qtemp = 1;
-var ktemp = 1;
-var th = [45,45,45,45,45];
-
-
-
-
-
-//temporary or dummy variables for locking buttons 
-var temp=0;
-var temp1 = 2;
-var temp2 = 0;
-
-var background, layer;
-/*
-// for trials during development
-function trythis()
-{ 		alert();}
-*/
-
-//change simulation specific css content. e.g. padding on top of variable to adjust appearance in variables window
-function editcss()
-{
-$('.variable').css('padding-top','20px');
-$('#datatable1').css('position','absolute');
-$('#datatable2').css('position','absolute');
-$('#datatable1').css('left','120px');
-$('#datatable1').css('top','340px');
-$('#datatable2').css('left','395px');
-$('#datatable2').css('top','340px');
-
-
-}
-
-
-//start of simulation here; starts the timer with increments of 0.1 seconds
-function startsim()
-{
-	simTimeId=setInterval("time=time+0.1; comment1(); ",'100');
-}
-
-// switches state of simulation between temp 0:Playing & 1:Paused
-function simstate()
-{
-  if (temp == 1){
-
-    var imgfilename=document.getElementById('playpausebutton').src;
-    imgfilename = imgfilename.substring(imgfilename.lastIndexOf('/') + 1, imgfilename.lastIndexOf('.'));
-      if (imgfilename=="blueplaydull")
-      {
-        time=0;	
-        document.getElementById('playpausebutton').src="./images//bluepausedull.png";
-        temp = 0;
-        temp1 = 1;
-        offset();
-      
-        TimeInterval = setInterval("time1 = time1 + .1; simperiod();",'100'); 
-        TimeInterval1 = setInterval("time2 = time2 + 1; varinit()", '1000');
-         $("#vspinner").spinner({disabled : true});
-        $("#vslider").slider({disabled : true});
-
-
-    } 
-  }
-}
-//restart simulation temp1 == 0: can restart experienment and variable initilization
-function rotstate(){
-  if(temp1 == 0){
-    temp2 = 0; temp1 = 2;
-    t1 = [26, 28.1, 26.5, 27, 27.2];
-    th = [45,45,45,45,45];
-    v=0;
-    background = new Image();
-  background.src = "./images/model2.jpg";
-  layer = new Image();
-  layer.src = "./images/screen.png";
-    varinit();
-    startsim();
-    drawModel();
-    $("#vspinner").spinner({disabled : false});
-    //$("#vfspinner").spinner({disabled : false});
-    $("#vslider").slider({disabled : false});
-    //$("#vfslider").slider({disabled : false});
-  }
-} 
-
-
-//offset for thermometer and temp change 
-function offset(){
-  if(v == 10){
-    //path = "./images//V1.jpg";
-    off[0] = 23.4;
-    off[1] = 22.58;
-    off[2] = 22.9;
-    off[3] = 6.5;
-    off[4] = 5.9;
-  }
-  else if(v == 20){
-    //path = "./images//V2.jpg";
-    off[0] = 24;
-    off[1] = 22.98;
-    off[2] = 23.3;
-    off[3] = 7;
-    off[4] = 6.9;
-  }
-  else if(v == 30){
-    //path = "./images//V3.jpg";
-    off[0] = 24.2;
-    off[1] = 23.18;
-    off[2] = 23.7;
-    off[3] = 7.5;
-    off[4] = 7.4;
-  }
-}
-//water temperature changes
-// function watertemp(){
-//   switch(vf){
-//     case 5:t1[6] += 5.4;break;
-//     case 10:t1[6] += 2.4;break;
-//     case 15:t1[6] += 1.4;break;
-//     case 20:t1[6] += 0.4;break;
-//   }
-// }
-    
-//stops simulations
-function simperiod(){
-  if(time1 >= 5.0){
-    clearInterval(TimeInterval);
-    clearInterval(TimeInterval1);
-    time1 = 0;
-    time2 = 0
-    temp1 = 0;
-    temp2 = 1;
-    document.getElementById('playpausebutton').src="./images//blueplaydull.png";
-    //watertemp();
-     printcomment("", 2);
-
-  }
-  else{
-    drawGradient();
-    printcomment("Wait for "+ (5 - Math.round(time1)) + " seconds for steady state", 2);
-  }
-}
-//switch screen here temp2 = 1: can switch; else it locks  
-function switchscreen(){
-  if(temp2 == 1){
-    var imgfilename=document.getElementById('switchbutton').src;
-    imgfilename = imgfilename.substring(imgfilename.lastIndexOf('/') + 1, imgfilename.lastIndexOf('.'));
-    if(imgfilename=="bluefwddulls"){
-      temp1 = 1;
-      document.getElementById('switchbutton').src="./images//bluebkdulls.png";
-      document.getElementById('calculation').style.visibility = "visible";
-      document.getElementById('simscreen').style.visibility = "hidden";
-      document.getElementById('textbox').style.visibility = "hidden";
-      document.getElementById('textbox1').style.visibility = "hidden";
-      printcomment("<i>Diameter, </i> d1 = 45mm, d2 = 75mm<br><i> Length of pipe</i> = 500mm<br><i>K</i>  = 0.069 W/m.K", 0);
-      calc();
-    }
-    if(imgfilename=="bluebkdulls"){
-      temp1 = 0;
-      document.getElementById('switchbutton').src = "./images//bluefwddulls.png";
-      document.getElementById('calculation').style.visibility = "hidden";
-      document.getElementById('simscreen').style.visibility = "visible";
-      document.getElementById('textbox').style.visibility = "visible";
-      document.getElementById('textbox1').style.visibility = "visible";
-      temp2 =1;
-      printcomment("<i>Diameter, </i> d1 = 45mm, d2 = 75mm<br><i> Length of pipe</i> = 500mm<br><i>K</i>  = 0.069 W/m.K", 1);
-      $("#symbol1").attr("style", "visibility:hidden");
-      $("#symbol2").attr("style", "visibility:hidden");
-      $("#symbol3").attr("style", "visibility:hidden");
-      $("#symbol4").attr("style", "visibility:hidden");
-      content = '';
-      $("#answer1").html(content);
-      $("#answer2").html(content);
-      
-      
-    } 
-  }
-}
-
-//Calculations of the experienment
-function calc(){
-  //variables calculations
-  var datapoints = [];
-  var Ti = (t1[0] + t1[1] + t1[2])/3;
-  var To = (t1[3] + t1[4])/2;
-  var l = 0.5
-  for(var i=45; i<=75; i++){
-    y = (qtemp*Math.log(75/i))/(2*Math.PI*l*ktemp);
-    y = Math.round(y * 10)/10;
-    datapoints.push({x:i, y:y});
-  }
-
-  drawgraph("graph", datapoints, "radius in mm", "Temperature profile(Ti-To)");
-
-  $("#qsubmit").click(function(){
-    $("#symbol2").attr("style", "visibility:hidden");
-    $("#symbol1").attr("style", "visibility:hidden");
-
-    if($("#qvalue").val() == qtemp){
-      $("#symbol2").attr("style", "visibility:visible; color: #028102;");
-      var content = '';
-    }
-    else{
-      $("#symbol1").attr("style", "visibility:visible; color:red;");
-      var content = '<p><span style=" color: #028102;">Correct answer</span> <span style="color: #e7722b;"> Q = '+qtemp+'</span> ';
-        
-    }
-    $("#answer1").html(content);
-  });
-
-  $("#ksubmit").click(function(){
-    $("#symbol4").attr("style", "visibility:hidden");
-    $("#symbol3").attr("style", "visibility:hidden");
-
-    if($("#kvalue").val() == ktemp){
-      $("#symbol4").attr("style", "visibility:visible; color:#028102;");
-      var content = '';
-    }
-    else{
-      $("#symbol3").attr("style", "visibility:visible; color:red;");
-      var  content = '<p><span style=" color: #028102;">Correct answer</span> <span style="color: #e7722b;"> K = '+ktemp+'</span> ';
-    }
-    $("#answer2").html(content);
-  });
-}
-
-//draw gradient w.r.t. time in thermometer water flow and heater
-function drawGradient(){
-
-
-  //heater simulation
-  var h = 100*time1;
-  //create gradient
-  var grd1 = ctx.createLinearGradient(0, 0, 0, h)
-  grd1.addColorStop(0,"red");
-  grd1.addColorStop(1,"white");
-  // Fill with gradient
-  ctx.fillStyle = grd1;
-  ctx.fillRect(100, 88, 230, 5);
-   
-   
-
-  //tube simulation
-  var w = 30*time1;
-  //create gradient
-  var grd2 = ctx.createLinearGradient(0, 0, 0, w)
-  grd2.addColorStop(0,"red");
-  grd2.addColorStop(1,"white");
-  // Fill with gradient
-  ctx.fillStyle = grd2;
-  ctx.fillRect(90, 99, 255, 17);
-
-  //tube gradient
-  var x = 30*time1;
-  var y = 200-x;
-  // Create gradient
-  var grd = ctx.createLinearGradient(0, 200, 0, y)
-  grd.addColorStop(0,"red");
-  grd.addColorStop(1,"white");
-  // Fill with gradient
-  ctx.fillStyle = grd;
-  ctx.fillRect(90, 65, 255, 17);
-
-  var x = 168,
-    y = 281,
-    // Radii of the white glow.
-    innerRadius = 4*time1,
-    outerRadius = 10*time1,
-    // Radius of the entire circle.
-    radius = 50;
-
-var gradient = ctx.createRadialGradient(x, y, innerRadius, x, y, outerRadius);
-//gradient.addColorStop(0, 'white');
-gradient.addColorStop(0, '#ff9999');
-gradient.addColorStop(1, 'white');
-
-ctx.arc(168, 281, radius, 0, 2 * Math.PI);
-
-ctx.fillStyle = gradient;
-ctx.fill();
-
-  // //thermometer heights add offset
-   if(time1 > 0){  th[0] += .86;};
-   if(time1 > 0){  th[1] += .84;};
-   if(time1 > 0){  th[2] += .8;};
-   if(time1 > 3){  th[3] += .55;};
-   if(time1 > 3){  th[4] += .53;};
-
-   //thermometers drawing
-    ctx.fillStyle = "black";
-    ctx.lineJoin = "round";
-
-   //thermometer reading
-   ctx.beginPath();
-   ctx.fillRect(325.25, 335, 1.5, -th[0]);
-   ctx.fillRect(373.25, 335, 1.5, -th[1]);
-   ctx.fillRect(425,    335, 1.5, -th[2]);
-   ctx.fillRect(473.25, 335, 1.5, -th[3]);
-   ctx.fillRect(521.25, 335, 1.5, -th[4]);
-   ctx.arc(168, 281, 50, 0, 2 * Math.PI); 
-    
-   ctx.rect(118, 281, 100, 105);
-   ctx.stroke();
-
-   ctx.beginPath();
-   ctx.arc(168, 281, 20, 0, 2 * Math.PI);
-
-   ctx.rect(148, 205, 40, 76);
-
-   ctx.stroke();
-}
-
-// initial model 
-function drawModel()
-{
-  canvas = document.getElementById("simscreen");
-  ctx = canvas.getContext("2d");
-  ctx.clearRect(0,0,550,400);  //clears the complete canvas#simscreen everytime
-  
-   background = new Image();
-  background.src = "./images/model2.jpg";
-  layer = new Image();
-  layer.src = "./images/screen.png";
-
-  // Make sure the image is loaded first otherwise nothing will draw.
-  layer.onload = function(){
-    ctx.drawImage(background, 0, 0, 550, 400); 
-
-    //ctx.clearRect(78, 210, 46, 64);
-    ctx.font = "15px Comic San MS";
-  ctx.fillText("Insulating Material", 420, 125);
-  ctx.fillText("Lagged Pipe", 40, 200);
-
-    ctx.fillStyle = "black";
-   ctx.lineJoin = "round";
-   ctx.beginPath();
-   ctx.rect(420, 230, 11, 112);
-   ctx.fillRect(424, 332, 4, 7);
-   ctx.rect(468, 230, 11, 112);
-   ctx.fillRect(472, 332, 4, 7);
-   ctx.rect(516, 230, 11, 112);
-   ctx.fillRect(520, 332, 4, 7);
-   ctx.rect(320, 230, 11, 112);
-   ctx.fillRect(324, 332, 4, 7);
-   ctx.rect(368, 230, 11, 112);
-   ctx.fillRect(372, 332, 4, 7);
-   ctx.rect(100, 88, 230, 5);
-   ctx.drawImage(layer, 0, 0, 550, 400); 
-   ctx.stroke();
-
-
-    drawGradient();
-    printcomment("<i>Diameter, </i> d1 = 45mm, d2 = 75mm<br><i> Length of pipe</i> = 500mm<br><i>K</i>  = 0.069 W/m.K", 1)
-  }
-}
-  
-
-//check wether a voltage and water flow is selected
-function comment1(){
-  $( "#vspinner" ).spinner({change:function() { v = $("#vspinner").spinner("value"); } });
-  
-  if(v!=0){
-    time = 0;
-    temp = 1;
-   
-    clearInterval(simTimeId);
-  }
-}
-
-//Change in Variables with respect to time
-function varinit()
-{
-	varchange();
-	//Variable r1 slider and number input types
-	$('#vslider').slider("value", v);	
-	$('#vspinner').spinner("value", v);
-
-
-	 
-  if(time2 > 0){ t1[0] += off[0];};
-  if(time2 > 0){ t1[1] += off[1];};
-  if(time2 > 0){t1[2] += off[2];};
-  if(time2 > 3){t1[3] += off[3];};
-  if(time2 > 3){t1[4] += off[4];};
-
-  if(v == 10){
-    heat = 50;
-    qtemp = q[0];
-    ktemp = k[0];
-  }
-  else if(v == 20){
-    heat = 60;
-    qtemp = q[1];
-    ktemp = k[1];
-  }
-  else if(v == 30){
-    heat = 70;
-    qtemp = q[2];
-    ktemp = k[2];
-  }
-  else{
-    heat = 0;
-  }
-
-  $('#Heat').spinner("value",heat);
-
-	$('#temp1').spinner("value",t1[0]);
-	
-	$('#temp2').spinner("value", t1[1]);
-
-	$('#temp3').spinner("value", t1[2]);
-
-	$('#temp4').spinner("value", t1[3]);
-
-	$('#temp5').spinner("value", t1[4]);
-
-}
-
-
-
-// Initialise and Monitor variable containing user inputs of system parameters.
-//change #id and repeat block for new variable. Make sure new <div> with appropriate #id is included in the markup
-function varchange()
-{
-//Variable f slider and number input types
-$('#vslider').slider({ max : 30, min : 0, step : 10 });		// slider initialisation : jQuery widget
-$('#vspinner').spinner({ max : 30, min : 0, step : 10 });		// number initialisation : jQuery widget			
-// monitoring change in value and connecting slider and number
-// setting trace point coordinate arrays to empty on change of link length
-$( "#vslider" ).on( "slide", function( e, ui ) { $('#vspinner').spinner("value",ui.value); ptx=[]; pty=[];j = 0 ;} );
-$( "#vspinner" ).on( "spin", function( e, ui ) { $('#vslider').slider("value",ui.value); ptx=[]; pty=[];j=0; });
-$( "#vspinner" ).on( "change", function() {  varchange() } );
-
-//Heat input
-$('#Heat').spinner({ max : 1000, min : 0, step : .1 });		// number initialisation : jQuery widget	
-
-//Variables Temp1 to temp5 number input types disabled will fill automatically
-$('#temp1').spinner({ max : 1000, min : 0, step : .1 });		// number initialisation : jQuery widget		
-$('#temp2').spinner({ max : 1000, min : 0, step : .1 });		// number initialisation : jQuery widget			
-$('#temp3').spinner({ max : 1000, min : 0, step : .1 });		// number initialisation : jQuery widget			
-$('#temp4').spinner({ max : 1000, min : 0, step : .1 });		// number initialisation : jQuery widget			
-$('#temp5').spinner({ max : 1000, min : 0, step : .1 });		// number initialisation : jQuery widget			
-
-}
-
-
-
-
-// prints comments passed as 'commenttext' in location specified by 'commentloc' in the comments box;
-// 0 : Single comment box, 1 : Left comment box, 2 : Right comment box
-function printcomment(commenttext,commentloc)
-{
-  if(commentloc==0)
-  {
-  document.getElementById('commentboxright').style.visibility='hidden';
-  document.getElementById('commentboxleft').style.width='570px';
-  document.getElementById('commentboxleft').style.textAlign = 'center';
-  document.getElementById('commentboxleft').innerHTML = commenttext;
-  }
-  else if(commentloc==1)
-  {
-  document.getElementById('commentboxright').style.visibility='visible';
-  document.getElementById('commentboxleft').style.width='285px';
-  document.getElementById('commentboxleft').innerHTML = commenttext;
-  }
-  else if(commentloc==2)
-  {
-  document.getElementById('commentboxright').style.visibility='visible';
-  document.getElementById('commentboxleft').style.width='285px';
-  document.getElementById('commentboxright').innerHTML = commenttext;
-  }
-  else
-  {
-  document.getElementById('commentboxright').style.visibility='hidden';
-  document.getElementById('commentboxleft').style.width='570px';
-  document.getElementById('commentboxleft').innerHTML = "<center>please report this issue to adityaraman@gmail.com</center>"; 
-  // ignore use of deprecated tag <center> . Code is executed only if printcomment function receives inappropriate commentloc value
-  }
-}
-
-</script>
-
-
-
-</head>
-<body onload="editcss(); drawModel(); startsim(); varinit();">
-
-<!-- DND-Verifying JavaScript is enabled in browser -->
-<noscript>
-The simulation requires JavaScript to be enabled.
-</noscript>
-
-<!-- 
-Author : Sai Aditya Raman 
-send an email to adityaraman09@gmail.com for any communication
--->
-
-<!-- Defining Container for Simulation -->
-<div id="container">
-
-<!-- Replace TITLE with simulation title to be displayed next to logo-->
-<!-- <div id="simtitle">Heat Transfer Through Lagged Pipe</div> -->
-<div id="simtitle">Thermal Conductivity of Insulating Material</div>
-
-<!-- Region for simulation display -->
-<canvas id="simscreen" height="400px" width="550px"  ></canvas>
-<div id="textbox" style="position: absolute; left:330px; top: 435px; width:250px; height:50px; " >
-  <p style='font-family: "Comic Sans MS", cursive, sans-serif; font-size: 13px;';>&nbsp; &nbsp; T1 &nbsp; &nbsp; &nbsp; &nbsp; T2&nbsp; &nbsp; &nbsp; &nbsp; T3&nbsp; &nbsp; &nbsp; &nbsp; T4&nbsp; &nbsp; &nbsp; &nbsp; T5
-  </p>
-</div>
-<div id="textbox1" style="position: absolute; left:146px; top: 420px; width:150px; height:50px;" >
-  <p style='font-family: "Comic Sans MS", cursive, sans-serif; font-size: 13px; text-align: center;word-wrap: break-word;width:100px;'>Cross Sectional View<br> A-A</p>
-</div>  
-
-<!-- Region for calculation visible after onclick switchbutton-->
-<div id="calculation" style="visibility: hidden">
-  <p><i>Ti</i> = (T1+T2+T3)/3<br>
-  <i>To</i> = (T4+T5)/2</p>
-  <p><b>Heat through Lagged pipe, </b></p>
-  <div class="tooltip"><label for="qvalue"><i> Q = </i></label><input type="number" id="qvalue" style="width: 125px;"> W
-    <span class="tooltiptext"><p> Q = <span style="font-size: large;" class="frac"><sup>2.&Pi;.L.(Ti-To)</sup><span>&frasl;</span><sub>ln(r2/r1)/K1</sub></span></p><p>upto two decimal places</p></span>
-  </div>
-  <p><input type="button" value="Check" id="qsubmit" style="position: relative; left: 100px;"><span id="symbol1" style="position: relative; left: 25px; color: red;visibility: hidden;">&#10008;</span> <span id="symbol2" style="position: relative; left: 25px; color: #028102;visibility: hidden;">&#10004;</span></p>
-  <div id="answer1"></div>
-
-  <p><b>Effective thermal conductivity, </b></p>
-  <div class="tooltip"><label for="kValue"><i> Keff = </i></label><input type="number" id="kvalue" style="width: 125px;"> W/m.K
-    <span class="tooltiptext"><p>K = <span style="font-size: large;" class="frac"><sup>Qin.ln(r2/r1)</sup><span>&frasl;</span><sub>2.&Pi;.l.(Ti-To)</sub></span></p><p>upto four decimal places</p></span>
-  </div>
-  
-  <p><input type="button" value="Check" id="ksubmit" style="position: relative; left: 100px;"><span id="symbol3" style="position: relative; left: 25px; color: red;visibility: hidden;">&#10008;</span> <span id="symbol4" style="position: relative; left: 25px; color: #028102;visibility: hidden;">&#10004;</span></p>
-  <div id="answer2"></div>
-  <!-- <p><span style=" color: #028102;">Correct answer</span  ><span style="color: #e7722b"> K = "++" </span></p> -->
-  
-  
-  <div style="position: absolute; top: 2px; left: 245px; width: 300px; height: 30px; font-size: large; text-align: center;"><b>Radial temperature distribution</b></div>
-  <div style="position: absolute; top: 20px; left: 245px; width: 300px; text-align: center;"> <p> T = <span class="frac"><sup>Q.ln(r2/r)</sup><span>&frasl;</span><sub>2.&Pi;.l/Keff</sub></span></p></div>
-  <div id="graph" style="position: absolute;left:245px; top: 100px; width:300px; height:250px;" >
-  </div>
-</div>
- 
-</div>
-<div id="titleincanvas">
- 
-</div>
-
-
-
-<!-- Region for comment / question prompts style="visibility: hidden";-->
-<div id="commentboxleft"></div>
-<div id="commentboxright"></div>
-
-<!-- DND-Title of region for variables display --> 
-<div id="vartitle">VARIABLES</div>
-
-<!-- Region for Input parameters of simulation -->
-<div id="variables">
-
-<!-- System variable input from user through slider and spinner jQuery widgets 
-repeat block with new variable name and new id for widgets-->
-<div class="variable">
-	<div class="varname"><p title="Link Length">Voltage(V)</p>
-		<input id="vspinner"></input></div>
-	<div id="vslider"></div>
-</div>
-
-<div class="variable">
-	<div class="varname"><p title="Link Length">Qin(W)</p>
-		<input id="Heat" disabled></input></div>
-	
-</div>
-
-<div class="variable">
-	<div class="varname"><p title="Link Length">Temp1(&deg;C)</p>
-		<input id="temp1" disabled></input></div>
-	
-</div>
-
-<div class="variable">
-	<div class="varname"><p title="Link Length">Temp2(&deg;C)</p>
-		<input id="temp2" disabled></input></div>
-	
-</div>
-
-<div class="variable">
-	<div class="varname"><p title="Link Length">Temp3(&deg;C)</p>
-		<input id="temp3" disabled></input></div>
-	
-</div>
-
-<div class="variable">
-	<div class="varname"><p title="Link Length">Temp4(&deg;C)</p>
-		<input id="temp4" disabled></input></div>
-	
-</div>
-
-<div class="variable">
-	<div class="varname"><p title="Link Length">Temp5(&deg;C)</p>
-		<input id="temp5" disabled></input></div>
-	
-</div>
-
-
-</div>
-
-<!-- DND-Title of region for controls display -->
-<div id="ctrltitle">CONTROLS</div>
-
-<!-- Region for User controls of simulation -->
-<div id="controls">
-    <img id="playpausebutton" onclick="simstate()" src="./images/blueplaydull.png" />
-    <img id="rotationbutton" onclick="rotstate()" src="./images//restartdull.png" />
-    <img id="switchbutton" onclick="switchscreen()" src="./images//bluefwddulls.png" />
-<!--
-<div class="usercheck">
-<!-- Point tracing
-<input type="checkbox" id="trace" ></input> <p>Trace Mid Point</p>
-<!-- Reset Parameters
-<input type="button" id="resetparams" value="Reset" onclick="varinit();"></input> -->
-</div>
-
-
-<!-- DND-Copyright display-->
-<div id="copyright" title="Developer : Prasad_mandave"> Copyright &copy; SOLVE The Virtual Lab @ NITK Surathkal </div>
-
-</div><!-- Container div close -->
-
-<!-- For trials during development
-write in trythis() function the outputs that you want to check.
-<input type='button' onclick='trythis()' value="try me"></input> 
--->
-
-
-
-</body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SOLVE</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
+    />
+    <link rel="stylesheet" href="css/general.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link href="./css/mathstyle.css" rel="stylesheet" /><!--Stylesheet to display Math functions -->
+
+    <link rel="stylesheet" href="css/query.css" />
+    <!-- <script defer src="https://code.jquery.com/jquery.min.js"></script> -->
+    <script
+      defer
+      src="https://code.jquery.com/jquery-3.7.0.min.js"
+      integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://code.jquery.com/ui/1.8.17/jquery-ui.min.js"
+    ></script>
+    <script defer src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <!-- <script defer src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> -->
+    <script
+      defer
+      type="text/javascript"
+      src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"
+    ></script>
+    <script defer src="./js/graph.ob.js"></script>
+<script defer src="./js/graph_use.ob.js"></script>
+<script defer src="./js/graph_use2.ob.js"></script>
+  </head>
+  <body>
+    <div class="title-div-container">
+      <div class="title-div">
+        <div class="logo-div">
+          <a href="#"
+            ><img src="images/logo_nitk.png" alt="Logo" class="logo"
+          /></a>
+        </div>
+        <h1>Thermal Conductivity of Insulating Material</h1>
+      </div>
+    </div>
+    <div class="container">
+      <div class="sidebar">
+        <ul class="tool-menu">
+          <li class="tool-list tool-objective" onclick="displayDiv(this)">
+            <a class="tool-link" title="Objective">
+              <img src="./images/objective.png" alt="Objective" class="icons" />
+            </a>
+            <span>Objective</span>
+          </li>
+          <li class="tool-list tool-description" onclick="displayDiv(this)">
+            <a class="tool-link" title="Description"
+              ><img
+                src="./images/description.png"
+                alt="Description"
+                class="icons"
+            /></a>
+            <span>Description</span>
+          </li>
+
+          <li class="tool-list tool-explore" onclick="displayDiv(this)">
+            <a class="tool-link" title="Explore"
+              ><img src="./images/explore.png" alt="Explore" class="icons"
+            /></a>
+            <span>Experiment</span>
+          </li>
+          <li class="tool-list tool-practice" onclick="displayDiv(this)">
+            <a class="tool-link" title="Variables"
+              ><img src="./images/solution.png" alt="solution" class="icons"
+            /></a>
+            <span>Solve</span>
+          </li>
+        </ul>
+      </div>
+      <div class="main">
+        <div class="main-section">
+          <div id="simulation" class="main__task-div">
+            <h3 class="task-title">Simulation</h3>
+
+            <div class="canvas__div">
+              <div class="task-screen objective">
+                <h3 class="objective__title">Objective</h3>
+                <p class="objective__main">
+                  To determine the thermal conductivity of the insulating material and plot the radial temperature distribution in the cylinder.
+                </p>
+              </div>
+              <div class="task-screen description hide">
+                <h3 class="description__title">Description</h3>
+                <div class="description-conatiner">
+                  <img src="./images/discriptionModel.png" alt="apparatus" class="model" />
+                  <div class="model-detail">
+                    <p>Diameter,  d1 = 45mm, d2 = 75mm</p>
+                    <p>Length of pipe = 500mm</p>
+                    <p>K = 0.069 W/m.K</p>
+                    <!-- <p>Length of shaded area = 300mm</p> -->
+                  </div>
+                </div>
+              </div>
+              <div class="task-screen explore hide">
+                <div class="explore-controls">
+                  <div class="voltage-set">
+                    <p>Set voltage</p>
+                    <button class="btn btn-start" disabled>Start</button>
+                    <button class="btn btn-reset">Reset</button>
+                  </div>
+                  <div class="input-group">
+                    <input
+                      type="radio"
+                      name="voltage"
+                      id="v10"
+                      value="10"
+                      class="voltage"
+                    />
+                    <label for="v10" class="voltage_label">10V</label>
+                  </div>
+                  <div class="input-group">
+                    <input
+                      type="radio"
+                      name="voltage"
+                      id="v20"
+                      value="20"
+                      class="voltage"
+                    />
+                    <label for="v20" class="voltage_label">20V</label>
+                  </div>
+                  <div class="input-group">
+                    <input
+                      type="radio"
+                      name="voltage"
+                      id="v30"
+                      value="30"
+                      class="voltage"
+                    />
+                    <label for="v30"  class="voltage_label">30V</label>
+                  </div>
+                  <div class="temperature-set">
+                    <div class="temperature-group">
+                      <span class="temp-text">Qin(W)</span>
+                      <span class="temp-val" id="heat">10</span>
+                    </div>
+                    <div class="temperature-group">
+                      <span class="temp-text">Temp1(&deg;C)</span>
+                      <span class="temp-val" id="temp1">10</span>
+                    </div>
+                    <div class="temperature-group">
+                      <span class="temp-text">Temp2(&deg;C)</span>
+                      <span class="temp-val" id="temp2">10</span>
+                    </div>
+                    <div class="temperature-group">
+                      <span class="temp-text">Temp3(&deg;C)</span>
+                      <span class="temp-val" id="temp3">10</span>
+                    </div>
+                    <div class="temperature-group">
+                      <span class="temp-text">Temp4(&deg;C)</span>
+                      <span class="temp-val" id="temp4">10</span>
+                    </div>
+                    <div class="temperature-group">
+                      <span class="temp-text">Temp5(&deg;C)</span>
+                      <span class="temp-val" id="temp5">10</span>
+                    </div>
+                  </div>
+                </div>
+                <p class="comment"></p>
+
+                <canvas
+                  id="simscreen"
+                  width="800"
+                  height="500"
+                  class="canvas"
+                ></canvas>
+                </div>
+                <div class="task-screen practice hide">
+                  
+                  <p id="info"></p>
+                  <p class="extra-info hide">Move the cursor to the graph to see the points</p>
+                  <div class="graph-div">
+                    <div class="graph" id="graph"></div>
+                  </div>
+                  <div class="questions">
+                    <p class="warning"> Please enter a value rounded upto two and four decimal points</p>
+                    <div class="question-three">
+                      <div class="question-title"></div>
+                      <div class="question-formula"> <p><i>Ti</i> = (T1+T2+T3)/3<br>
+                        <i>To</i> = (T4+T5)/2</p></div>
+                    
+                      <div></div>
+                    </div>
+                    <div class="question-four">
+                      <div class="question-title">Radial temperature distribution</div>
+                      <div class="question-formula">T = <span class="frac"><sup>Q.ln(r2/r)</sup><span>&frasl;</span><sub>2.&Pi;.l/Keff</sub></span></div>
+                   
+                      <div></div>
+                    </div>
+                    <div class="question-one">
+                      <div class="question-title">Heat through Lagged pipe, </div>
+                   
+                      <div class="question-formula"> <p> Q = <span style="font-size: large;" class="frac"><sup>2.&Pi;.L.(Ti-To)</sup><span>&frasl;</span><sub>ln(r2/r1)/K1</sub></span></p></div>
+
+                      <p class="question-label">Q =  </p>
+                      <input class="question-input question-input1" type="number"/>
+                      <p class="question-unit question-unit1">W</p>
+                      <p class="correct-answer correct-answer1 hide"></p>
+                      <button class="btn btn-check btn-check1">Check</button>
+                    </div>
+                    <div class="question-two">
+                      <div class="question-title">Effective thermal conductivity</div>
+                      <div class="question-formula"><p>K = <span style="font-size: large;" class="frac"><sup>Qin.ln(r2/r1)</sup><span>&frasl;</span><sub>2.&Pi;.l.(Ti-To)</sub></span></p></div>
+                      <p class="question-label">Keff =  </p>
+                      <input class="question-input question-input2" type="number"/>
+                      <p class="question-unit question-unit2"> W/m.K</p>
+                      <p class="correct-answer correct-answer2 hide"></p>
+                      <button class="btn btn-check btn-check2">Check</button>
+                    </div>
+                   
+                    
+                  </div>
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="main__task-div footer">
+            <p>Copyright © SOLVE The Virtual Lab @ NITK Surathkal</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script defer src="js/script.js"></script>
+  </body>
 </html>
