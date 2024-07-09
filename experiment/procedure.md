@@ -1,13 +1,26 @@
-#### These procedure steps will be followed on the simulator
+### Procedure
 
-1. The following slide appears after clicking on the simulation.<br>
-![alt text](images/lag11.png)<br>
+<div style="text-align:left">
+  Click on the Objective icon <img src="images/objecticon.png" alt="Alt text" style="height:80px; width:80px;">  to view the Objective of the simulation. 
 
-2. Set the value of input voltage by using the slider and click play .<br>
-![alt text](images/lag22.png)<br>
+   ![Alt text](images/screen1.png)
+   
+   Click on the Description icon <img src="images/desicon.png" alt="Alt text" style="height:80px; width:80px;">  to view the description of the simulation. 
 
-3. Wait for 5 seconds to reach the steady state and note down the values. Click next.<br>
-![alt text](images/lag33.png)<br>
+   ![Alt text](images/Descriptionscreen.png)
 
-4. Finally , check the calculated values by entering them in their respective boxes. Click back if you want to go back to previous slide. <br>
-![alt text](images/lag44.png)<br>
+  Click on the Experiment icon <img src="images/expicon.png" alt="Alt text" style="height:80px; width:80px;">  to view the experimental setup. 
+
+   ![Alt text](images/experimentscreen.png)
+
+  Select any one voltage value and click on the Start button <img src="images/startButton.png" alt="Alt text" style="height:80px; width:80px;"> to perform the experiment,click Reset button <img src="images/resetButton.png" alt="Alt text" style="height:80px; width:80px;"> to reset the experiment. 
+<!-- 
+   ![Alt text](images/expscreen.png) -->
+
+  After performing the experiment, click on the Solve icon <img src="images/solveicon.png" alt="Alt text" style="height:80px; width:80px;"> 
+
+   ![Alt text](images/solvescreen1.png)
+
+  Calculate the result and click Check button <img src="images/checkButton.png" alt="Alt text" style="height:80px; width:80px;"> to Evaluate the result.
+
+</div>
