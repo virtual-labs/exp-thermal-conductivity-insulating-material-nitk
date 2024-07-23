@@ -1,27 +1,29 @@
 ### Procedure
 
-<div style="text-align:left">
-  Click on the Objective icon <img src="images/objecticon.png" alt="Alt text" style="height:80px; width:80px;">  to view the Objective of the simulation.
+<!-- <div style="text-align:left"> -->
+1. Click on the Objective icon <img src="images/objecticon.png" alt="Alt text"  >  to view the Objective of the simulation.
 
-![Alt text](images/screen1.png)
+   ![Alt text](./images/screen1.png)
 
-Click on the Description icon <img src="images/Desicon.png" alt="Alt text" style="height:80px; width:80px;"> to view the description of the simulation.
+2. Click on the Description icon <img src="images/Desicon.png" alt="Alt text"  > to view the description of the simulation.
 
-![Alt text](images/Descriptionscreen.png)
+   ![Alt text](images/Descriptionscreen.png)
 
-Click on the Experiment icon <img src="images/expicon.png" alt="Alt text" style="height:80px; width:80px;"> to view the experimental setup.
+3. Click on the Experiment icon <img src="images/expicon.png" alt="Alt text"  > to view the experimental setup.
 
-![Alt text](images/experimentscreen.png)
+   ![Alt text](./images/experimentscreen.png)
 
-Select any one voltage value and click on the Start button <img src="images/startButton.png" alt="Alt text" style="height:80px; width:80px;"> to perform the experiment,click Reset button <img src="images/resetButton.png" alt="Alt text" style="height:80px; width:80px;"> to reset the experiment.
+4. Select any one voltage value and click on the Start button <img src="images/startButton.png" alt="Alt text"  > to perform the experiment.
+
+5. click Reset button <img src="images/resetButton.png" alt="Alt text"  > to reset the experiment.
 
 <!--
    ![Alt text](images/expscreen.png) -->
 
-After performing the experiment, click on the Solve icon <img src="images/solveicon.png" alt="Alt text" style="height:80px; width:80px;">
+6. After performing the experiment, click on the Solve icon <img src="images/solveicon.png" alt="Alt text"  >
 
-![Alt text](images/solvescreen1.png)
+   ![Alt text](./images/solvescreen1.pnG)
 
-Calculate the result and click Check button <img src="images/checkButton.png" alt="Alt text" style="height:80px; width:80px;"> to Evaluate the result.
+7. Calculate the result and click Check button <img src="images/checkButton.png" alt="Alt text"  > to Evaluate the result.
 
-</div>
+<!-- </div> -->
