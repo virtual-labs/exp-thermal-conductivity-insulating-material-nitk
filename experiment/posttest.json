@@ -22,55 +22,55 @@
       "question": "When the thickness of insulation on a pipe exceeds the critical value the heat flow rate",
       "answers": {
         "a": "Increases",
-        "b": "None of these",
-        "c": "Remains constant",
-        "d": "Decreases"
+        "b": "Remains constant",
+        "c": "Decreases",
+        "d": "None of these"
       },
       "explanations": {
-        "a": "Correct, the right answer is (a). This is because as the insulation becomes thicker, the outer surface area of the insulation also increases. This larger surface area can radiate or convect more heat to the surroundings, which can increase the overall heat loss from the pipe.",
-        "b": "The right answer is (a). When the thickness of insulation on a pipe exceeds the critical value the heat flow rate increases. This is because as the insulation becomes thicker, the outer surface area of the insulation also increases. This larger surface area can radiate or convect more heat to the surroundings, which can increase the overall heat loss from the pipe.",
-        "c": "The right answer is (a). IF the thickness of insulation on a pipe exceeds or not exceeds the critical value, the heat flow rate should get increased or decreased but not remaining constant.",
-        "d": "The right answer is (a). In general, increasing the thickness of the insulation increases its thermal resistance, which reduces the rate of heat transfer. However, when the thickness of the insulation exceeds a certain critical value, the heat flow rate can actually increase. This is because as the insulation becomes thicker, the outer surface area of the insulation also increases. This larger surface area can radiate or convect more heat to the surroundings, which can increase the overall heat loss from the pipe."
+        "a": "The right answer is (c). IF the thickness of insulation on a pipe exceeds or not exceeds the critical value, the heat flow rate should get increased or decreased but not remaining constant.  ",
+        "b": "The right answer is (c). When the thickness of insulation on a pipe exceeds the critical value the heat flow rate increases. This is because as the insulation becomes thicker, the outer surface area of the insulation also increases. This larger surface area can radiate or convect more heat to the surroundings, which can increase the overall heat loss from the pipe.",
+        "c": "Correct, The right answer is (c). This is because as the insulation becomes thicker, the outer surface area of the insulation also increases. This larger surface area can radiate or convect more heat to the surroundings, which can increase the overall heat loss from the pipe.",
+        "d": "The right answer is (c). In general, increasing the thickness of the insulation increases its thermal resistance, which reduces the rate of heat transfer. However, when the thickness of the insulation exceeds a certain critical value, the heat flow rate can actually increase. This is because as the insulation becomes thicker, the outer surface area of the insulation also increases. This larger surface area can radiate or convect more heat to the surroundings, which can increase the overall heat loss from the pipe."
       },
-      "correctAnswer": "a",
+      "correctAnswer": "c",
       "difficulty": "beginner"
     },
     {
       "question": "The amount of heat flow through a body by conduction is",
       "answers": {
         "a": "Directly proportional to the temperature",
-        "b": "All of these",
-        "c": "Inversely proportional to the thickness of the body",
-        "d": "Dependent upon the material of the body"
+        "b": "Inversely proportional to the thickness of the body",
+        "c": "Dependent upon the material of the body",
+        "d": "All of these"
       },
       "explanations": {
-        "a": "The right answer is (b). The amount of heat flow through a body by conduction is not only directly proportional to the temperature. But also inversely proportional to the thickness of the body and dependent upon the material of the body.",
-        "b": "Correct, the right answer is (b). The amount of heat flow through a body by conduction is directly proportional to the temperature, inversely proportional to the thickness of the body and dependent upon the material of the body.",
-        "c": "The right answer is (b). The amount of heat flow through a body by conduction is not only inversely proportional to the thickness of the body. But also directly proportional to the temperature and dependent upon the material of the body.",
-        "d": "The right answer is (b). The amount of heat flow through a body by conduction does not only dependent upon the material of the body. But also directly proportional to the temperature and inversely proportional to the thickness of the body."
+        "a": "The right answer is (d). The amount of heat flow through a body by conduction is not only directly proportional to the temperature. But also inversely proportional to the thickness of the body and dependent upon the material of the body.",
+        "b": "The right answer is (d). The amount of heat flow through a body by conduction is directly proportional to the temperature, inversely proportional to the thickness of the body and dependent upon the material of the body.",
+        "c": "The right answer is (d). The amount of heat flow through a body by conduction is not only inversely proportional to the thickness of the body. But also directly proportional to the temperature and dependent upon the material of the body.",
+        "d": "Correct, The right answer is (d). The amount of heat flow through a body by conduction does not only dependent upon the material of the body. But also directly proportional to the temperature and inversely proportional to the thickness of the body."
       },
       "correctAnswer": "b",
       "difficulty": "advanced"
     },
     {
-      "question": "Which of the following is true?",
+      "question": "In a radial heat conduction experiment through a cylindrical layer of insulating material, which of the following temperature measurements is most crucial for directly applying Fourier's Law to calculate the thermal conductivity?",
       "answers": {
-        "a": "Latent heat of fusion is not much affected by pressure ",
-        "b": "Latent heat of vapourization is highly sensitive to pressure",
-        "c": "Both of the mentioned",
-        "d": "None of the mentioned"
+        "a": "The ambient temperature of the surroundings.",
+        "b": "The temperature at a single point within the insulation.",
+        "c": "The temperatures at two distinct radial locations within the insulation.",
+        "d": "The temperature of the heating source inside the insulation."
       },
       "explanations": {
-        "a": "The right answer is (c). Latent heat of fusion is less sensitive to pressure while latent heat of vapourization is highly sensitive to pressure.",
-        "b": "The right answer is (c). Latent heat of fusion is less sensitive to pressure while latent heat of vapourization is highly sensitive to pressure.",
-        "c": "Correct, The right answer is (c). Latent heat of fusion is less sensitive to pressure while latent heat of vapourization is highly sensitive to pressure.",
-        "d": "The right answer is (c). Latent heat of fusion is less sensitive to pressure while latent heat of vapourization is highly sensitive to pressure."
+        "a": "The right answer is (c). The ambient temperature is important for understanding convective heat loss at the outer surface of the insulation, but it's not directly used in the conductive heat transfer equation through the insulation itself.",
+        "b": "The right answer is (c).A single temperature measurement within the insulation doesn't provide information about the temperature gradient, which is necessary for calculating heat flow and thermal conductivity using Fourier's Law.",
+        "c": "Correct, The right answer is (c). Fourier's Law for heat conduction states that the rate of heat transfer is proportional to the temperature gradient and the area perpendicular to the heat flow. In a cylindrical geometry with radial heat flow, we need to determine the temperature difference (ΔT) over a known radial distance (Δr) within the insulating material to calculate the temperature gradient (dT/dr). Therefore, measuring temperatures at two different radial locations within the insulation is essential for directly applying Fourier's Law.",
+        "d": "The right answer is (c). The temperature of the heating source provides a boundary condition, but to apply Fourier's Law within the insulation, we need temperature measurements at different points within that material to determine the temperature gradient across it."
       },
       "correctAnswer": "c",
-      "difficulty": "beginner"
+      "difficulty": "advanced"
     },
     {
-     "question": "The literature of heat transfer generally recognizes distinct modes of heat transfer. How many modes are there?",
+      "question": "The literature of heat transfer generally recognizes distinct modes of heat transfer. How many modes are there?",
       "answers": {
         "a": "One",
         "b": "Two",
@@ -103,6 +103,5 @@
       "correctAnswer": "a",
       "difficulty": "intermediate"
     }
-
   ]
 }
