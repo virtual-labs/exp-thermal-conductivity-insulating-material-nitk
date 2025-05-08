@@ -2,38 +2,85 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "Heat transfer takes place according to",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "First Law of Thermodynamics",
+        "b": "Second Law of Thermodynamics",
+        "c": "Third Law of Thermodynamics",
+        "d": "Zeroth Law of Thermodynamics"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "The right answer is (b). The first law of thermodynamics, also known as the law of energy conservation, states that energy cannot be created or destroyed, only transferred or converted from one form to another. In the context of heat transfer, the first law allows us to calculate the amount of heat transferred based on the change in internal energy of a system.",
+        "b": "Correct, the right answer is (b). Heat transfer follows the second law of thermodynamics, which is a fundamental principle governing the direction of all energy transfers. The second law states that heat transfer occurs spontaneously from higher- to lower-temperature bodies but never spontaneously in the reverse direction. This law is based on the concept of entropy, a measure of disorder or randomness.",
+        "c": "The right answer is (b). The third law of thermodynamics states that the entropy of a pure, perfect crystalline substance at absolute zero (0 K) is zero. This law implies that it is impossible to reach absolute zero temperature in a finite number of steps. At absolute zero, a system is in its ground state, where energy is minimized and entropy is zero.",
+        "d": "The right answer is (b). The Zeroth Law states that if two systems (A and B) are each in thermal equilibrium with a third system, then they are in thermal equilibrium with each other."
       },
-      "correctAnswer": "a",
-      "difficulty": "beginner"
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "Fourier law of heat conduction is based on the assumption that",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Heat flow through a solid is one dimensional",
+        "b": "Heat flow is in steady state",
+        "c": "Both (a) and (b)",
+        "d": "None of the options"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "The right answer is (c). The fourier law of heat conduction is formed based on the assumptions not only that the heat flow through a solid is one dimensional but also the heat flow is in steady state.",
+        "b": "The right answer is (c). The fourier law of heat conduction is formed based on the assumptions not only that the heat flow is in steady state but also the heat flow through a solid is one dimensional.",
+        "c": "Correct, the right answer is (c). Fourier law of heat conduction states that the rate of heat transfer through a material is proportional to the negative gradient in the temperature and to the area perpendicular to that gradient through which the heat flows. It is formed based on the assumptions that heat flow through a solid is one dimensional and it is in steady state.",
+        "d": "The right answer is (c). The fourier law of heat conduction is formed based on the assumptions that the heat flow through a solid is one dimensional and the heat flow is in steady state."
       },
       "correctAnswer": "c",
       "difficulty": "beginner"
+    },
+    {
+      "question": "The transfer of heat between two bodies in direct contact is called?",
+      "answers": {
+        "a": "Radiation",
+        "b": "Convection",
+        "c": "Conduction",
+        "d": "None of the above"
+      },
+      "explanations": {
+        "a": "The right answer is (c). The transfer of heat between two bodies in the form of electromagnetic waves is called Radiation.",
+        "b": "The right answer is (c). Convection is the transfer of heat within a fluid (which can be a liquid or a gas) due to the movement of the fluid itself.",
+        "c": "Correct, the right answer is (c). The transfer of heat between two bodies in direct contact is called Conduction.",
+        "d": "The right answer is (c). The transfer of heat between two bodies in direct contact is called Conduction."
+      },
+      "correctAnswer": "c",
+      "difficulty": "advanced"
+    },
+    {
+      "question": "Heat flow into a system taken to be __________ and heat flow out of the system is taken as __________",
+      "answers": {
+        "a": "Positive, Positive",
+        "b": "Negative, Negative",
+        "c": "Negative, Positive",
+        "d": "Positive, Negative"
+      },
+      "explanations": {
+        "a": "The right answer is (d). Heat flow into a system taken to be positive and heat flow out of the system is taken as negative.",
+        "b": "The right answer is (d). Heat flow into a system taken to be positive and heat flow out of the system is taken as negative.",
+        "c": "The right answer is (d). Heat flow into a system taken to be positive and heat flow out of the system is taken as negative.",
+        "d": "Correct, the right answer is (d). Heat flow into a system taken to be positive and heat flow out of the system is taken as negative."
+      },
+      "correctAnswer": "d",
+      "difficulty": "beginner"
+    },
+    {
+     "question": "The specific heat of the substances is defined as the amount of heat required to raise a unit mass of the substances through a unit raise in temperature",
+      "answers": {
+        "a": "True",
+        "b": "False"
+      },
+      "explanations": {
+        "a": "Correct, the right answer is (a). The specific heat of a substance, also known as specific heat capacity, is the amount of heat energy required to raise the temperature of a unit mass of the substance by a unit increase in temperature.",
+        "b": "The right answer is (a). The specific heat of a substance, also known as specific heat capacity, is the amount of heat energy required to raise the temperature of a unit mass of the substance by a unit increase in temperature."
+      },
+      "correctAnswer": "a",
+      "difficulty": "advanced"
     }
   ]
 }
