@@ -18,10 +18,12 @@
     />
     <link rel="stylesheet" href="css/general.css" />
     <link rel="stylesheet" href="css/style.css" />
-    <link href="./css/mathstyle.css" rel="stylesheet" /><!--Stylesheet to display Math functions -->
+    <link href="./css/mathstyle.css" rel="stylesheet" />
+    <!--Stylesheet to display Math functions -->
 
     <link rel="stylesheet" href="css/query.css" />
     <!-- <script defer src="https://code.jquery.com/jquery.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
     <script
       defer
       src="https://code.jquery.com/jquery-3.7.0.min.js"
@@ -40,8 +42,8 @@
       src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"
     ></script>
     <script defer src="./js/graph.ob.js"></script>
-<script defer src="./js/graph_use.ob.js"></script>
-<script defer src="./js/graph_use2.ob.js"></script>
+    <script defer src="./js/graph_use.ob.js"></script>
+    <script defer src="./js/graph_use2.ob.js"></script>
   </head>
   <body>
     <div class="title-div-container">
@@ -96,15 +98,21 @@
               <div class="task-screen objective">
                 <!-- <h3 class="objective__title">Objective</h3> -->
                 <p class="objective__main">
-                  To determine the thermal conductivity of the insulating material and plot the radial temperature distribution in the cylinder.
+                  To determine the thermal conductivity of the insulating
+                  material and plot the radial temperature distribution in the
+                  cylinder.
                 </p>
               </div>
               <div class="task-screen description hide">
                 <!-- <h3 class="description__title">Description</h3> -->
                 <div class="description-conatiner">
-                  <img src="./images/discriptionModel.png" alt="apparatus" class="model" />
+                  <img
+                    src="./images/discriptionModel.png"
+                    alt="apparatus"
+                    class="model"
+                  />
                   <div class="model-detail">
-                    <p>Diameter,  d1 = 45mm, d2 = 75mm</p>
+                    <p>Diameter, d1 = 45mm, d2 = 75mm</p>
                     <p>Length of pipe = 500mm</p>
                     <!-- <p>K = 0.069 W/m.K</p> -->
                     <!-- <p>Length of shaded area = 300mm</p> -->
@@ -146,7 +154,7 @@
                       value="30"
                       class="voltage"
                     />
-                    <label for="v30"  class="voltage_label">30V</label>
+                    <label for="v30" class="voltage_label">30V</label>
                   </div>
                   <div class="temperature-set">
                     <div class="temperature-group">
@@ -183,27 +191,34 @@
                   height="500"
                   class="canvas"
                 ></canvas>
+              </div>
+              <div class="task-screen practice hide">
+                <p id="info"></p>
+                <p class="extra-info hide">
+                  Move the cursor to the graph to see the points
+                </p>
+                <div class="graph-div">
+                  <div class="graph" id="graph"></div>
                 </div>
-                <div class="task-screen practice hide">
-                  
-                  <p id="info"></p>
-                  <p class="extra-info hide">Move the cursor to the graph to see the points</p>
-                  <div class="graph-div">
-                    <div class="graph" id="graph"></div>
-                  </div>
-                  <div class="questions">
-                    <!-- <p class="warning"> Please enter a value rounded upto two and four decimal points</p> -->
-                    <div class="question-three">
-                      <div class="question-title"></div>
-                      <div class="question-formula"> <p><i>Ti</i> = (T1+T2+T3)/3<br>
-                        <i>To</i> = (T4+T5)/2</p></div>
-                    
-                      <div></div>
+                <div class="questions">
+                  <!-- <p class="warning"> Please enter a value rounded upto two and four decimal points</p> -->
+                  <div class="question-three">
+                    <div class="question-title"></div>
+                    <div class="question-formula">
+                      <p>$$T_i = \frac{(T_1 + T_2 + T_3)}{3}$$</p>
+                      <p>$$T_o = \frac{(T_4 + T_5)}{2}$$</p>
                     </div>
-                    <div class="question-four">
-                      <div class="question-title">Radial temperature distribution</div>
-                      <div class="question-formula"><span class="frac"><sup>T - T1</sup><span>&frasl;</span><sub>T2 - T1</sub></span> = <span class="frac"><sup>ln(r/r1)</sup><span>&frasl;</span><sub>ln(r2/r1)</sub></span></div>
-                   
+                    <div></div>
+                  </div>
+                  <div class="question-four">
+                    <div class="question-title">
+                      Radial temperature distribution
+                    </div>
+                    <div class="question-formula">
+                      $$\frac{T - T_1}{T_2 -
+                        T_1}=\frac{ln(r/r_1)}{ln(r_2/r_1)}$$
+                      </div>
+                      
                       <div></div>
                     </div>
                     <!-- <div class="question-one">
@@ -218,18 +233,25 @@
                       <button class="btn btn-check btn-check1">Check</button>
                     </div> -->
                     <div class="question-two">
-                      <div class="question-title">Effective thermal conductivity</div>
-                      <div class="question-formula"><p>K = <span style="font-size: large;" class="frac"><sup>Qin.ln(r2/r1)</sup><span>&frasl;</span><sub>2.&Pi;.l.(Ti-To)</sub></span></p></div>
-                      <p class="question-label">Keff =  </p>
-                      <input class="question-input question-input2" type="number"/>
-                      <p class="question-unit question-unit2"> W/m.K</p>
+                      <div class="question-title">
+                        Effective thermal conductivity
+                      </div>
+                      <div class="question-formula">
+                        <p>
+                          $$K = \frac{Q_{in}.ln(r_2/r_1)}{2.π.l.(T_i - T_o)}$$
+                        </p>
+                        
+                      </div>
+                      <p class="question-label">$$K_{eff} =$$</p>
+                      <input
+                        class="question-input question-input2"
+                        type="number"
+                      />
+                      <p class="question-unit question-unit2">$$W/m.K$$</p>
                       <p class="correct-answer correct-answer2 hide"></p>
                       <button class="btn btn-check btn-check2">Check</button>
                     </div>
-                   
-                    
                   </div>
-                 
                 </div>
               </div>
             </div>
