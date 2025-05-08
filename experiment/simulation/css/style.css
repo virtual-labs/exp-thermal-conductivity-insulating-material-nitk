@@ -343,7 +343,6 @@ h1 {
   justify-self: center;
 }
 
-
 #info {
   grid-column: 1/-1;
   justify-self: center;
@@ -368,14 +367,14 @@ h1 {
   grid-column: 1/-1;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr ;
+  grid-template-rows: 1fr;
   justify-content: space-between;
   gap: 0.5rem;
 }
 .question-one,
 .question-two,
 .question-three,
-.question-four{
+.question-four {
   /* grid-column: 1/-1; */
   border-radius: 0.2rem;
   padding: 0.2rem;
@@ -408,6 +407,7 @@ h1 {
 }
 .question-unit {
   align-self: center;
+  justify-self: start;
 }
 .btn-check {
   padding: 0.5rem;
