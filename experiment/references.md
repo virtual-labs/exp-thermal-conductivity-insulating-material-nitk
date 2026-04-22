@@ -10,7 +10,12 @@
     <li>C. P. Arora, Engineering Heat Transfer, Khanna Publishers, India, 1996.</li>
     <li><a href="https://www.youtube.com/watch?v=GNMFPBB79B8">Lecture 60: Heat transfer in Insulations materials</a></li>
     <li><a href="https://www.youtube.com/watch?v=etjZmdmrjSU">Mod-01 Lec-16 Dielectric (Insulating) Solids</a></li>
-    <td>Developer : Dr. K V Gangadharan | NITK</br></br>
+<td>Developers:<br/> 
+    <ul style="list-style-type: none;">
+     <li>Dr. K V Gangadharan | NITK</li> 
+     <li>Dr. Parthasarathy P | NITK</li>
+    </ul>
+    </br> 
     Contributors :
     <ul style="list-style-type: none;">
     <li>Prasad Mandave | 181ME147 | NITK</li>
